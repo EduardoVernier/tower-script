@@ -1,103 +1,125 @@
-var CANVAS_WIDTH = 1200;
-var CANVAS_HEIGHT = 600;
-var TOWERS = [];
-var ENEMIES = [];
-
-
-// Create the canvas
-var canvas = document.createElement("canvas");
-var ctx = canvas.getContext("2d");
-canvas.width = CANVAS_WIDTH;
-canvas.height = CANVAS_HEIGHT;
-canvas.addEventListener("mousedown", getPosition, false);
-document.body.appendChild(canvas);
-
-// Background image
-var bgReady = false;
-var bgImage = new Image();
-bgImage.onload = function () {
-	bgReady = true;
-};
-bgImage.src = "images/grid.png";
-
-// Monster image
-var towerAReady = false;
-var towerAImage = new Image();
-towerAImage.onload = function () {
-	towerAReady = true;
-};
-towerAImage.src = "images/tA.png";
-
-
-var lineBreak = document.createElement("br");
-document.body.appendChild(lineBreak);
-
-var towerAButton = document.createElement("button");
-towerAButton.innerHTML = "Tower A";
-towerAButton.onclick = function(){ 
-	var newTower = new Tower (1,2,3); //fix values later
-
-	var len = TOWERS.length;
-
-	if (len == 0)
-		TOWERS.push(newTower);
-	else
-		if (TOWERS [len-1].x != -1)
-			TOWERS.push(newTower);
- };
-
-document.body.appendChild(towerAButton);
-
-var render = function () {
+function render () {
 	if (bgReady) {
 		ctx.drawImage(bgImage, 0, 0);
 	}
 
-	if (towerAReady){
+	if (yellowTowerReady){
 		TOWERS.forEach(function (obj){
 			if (obj.x != -1)
-				ctx.drawImage(towerAImage, obj.x, obj.y);
+			{
+				// Put image on center of mouse click
+				ctx.drawImage(obj.image, obj.x-20, obj.y-20);
+				
+				ctx.fillRect(obj.x,obj.y,1,1); 
+				// Draw radius circle
+				ctx.beginPath();
+				ctx.arc(obj.x,obj.y,obj.radius,0,2*Math.PI);
+				ctx.strokeStyle="#CCCCCC";
+				ctx.stroke();
+			}
 		});
 	}
+
+
+	ENEMIES.forEach(function (obj){
+		// Put image on center of mouse click
+		ctx.drawImage(obj.image, obj.x-15, obj.y-15);
+		ctx.fillRect(obj.x,obj.y,1,1); 
+
+		}
+	);
+
+	if (CURSOR_STYLE == 1)
+	{
+		document.body.style.cursor = 'crosshair';
+		//console.log(mouseX);
+		var r = TOWERS[TOWERS.length-1].radius;
+		ctx.beginPath();
+		ctx.arc(mouseX,mouseY,r,0,2*Math.PI);
+		ctx.strokeStyle="#AAA";
+		ctx.stroke();
+
+	}
+	else
+		document.body.style.cursor = 'default';
 
 	// Score
 	ctx.fillStyle = "rgb(0, 0, 0)";
 	ctx.font = "30px Helvetica";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
-	ctx.fillText("Money: " + "for nothing", 10, 0);
+	ctx.fillText("Money: " + float2int(totalMoney) + "   Castle Hits: " castleHits, 10, 0);
+}
+
+function update (modifier) {
+	totalMoney = totalMoney + modifier*10;
+	//console.log(keysDown);
+
+	if (81 in keysDown) 
+			createTower(YELLOW_TOWER);
+	else 
+		if (87 in keysDown)
+			createTower(GREEN_TOWER);
+		else 
+			if (69 in keysDown)
+				createTower(BLUE_TOWER);
+			else
+				if (82 in keysDown)
+					createTower(ORANGE_TOWER);
+				else
+					if (32 in keysDown)
+						createEnemy(ENEMY);
+
+	ENEMIES.forEach(function (obj,index){
+			var hit = obj.move();
+			if (hit == 1)
+			{
+				castleHits++;
+				ENEMIES.splice(index, 1);
+			}
+		}
+	);
+
+
+	hordeCooldown += modifier;
+	if (hordeCooldown > 10) //
+	{
+
+		createEnemy(ENEMY);
+		hordeCooldown = 0;
+	}
+	
 };
 
-var update = function (modifier) {
-//	totalMoney = totalMoney + modifier*MONEY_MULTIPLIER;
-};
-
-var reset = function () {
+function reset () {
 	var i = "hi";
 };
 
-// The main game loop
-var main = function () {
-	var now = Date.now();
-	var delta = now - then;
 
-	update(delta / 1000);
-	render();
+var createTower = function (_tower){
+		CURSOR_STYLE = 1;
 
-	then = now;
+		var newTower = new Tower (_tower); //fix values later
+		var len = TOWERS.length;
 
-	// Request to do this again ASAP
-	requestAnimationFrame(main);
+		if (len == 0)
+			TOWERS.push(newTower);
+		else
+			if (TOWERS [len-1].x != -1)
+				TOWERS.push(newTower);
 };
 
-// Cross-browser support for requestAnimationFrame
-var w = window;
-requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
 
-// Let's play this game!
-var then = Date.now();
-reset();
-main();
+function createTowerButton(color, image, range, impact, cooldown) {
+	var newButton = document.createElement("button");
+	newButton.innerHTML = color;
 
+	newButton.onclick = createTower(color, image, range, impact, cooldown);
+	return newButton;
+};
 
-// Functions
+function createEnemy(_enemy){
+	var newEnemy = new Enemy (_enemy);
+
+	ENEMIES.push(newEnemy);
+}

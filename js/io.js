@@ -15,11 +15,13 @@ function canvasClick(event)
   	var cY = event.y;
 
   	var canvas = document.getElementById("canvas");
-  	var len = TOWERS.length; 
+  	var len = towerList.length; 
 
-  	if (len > 0 && TOWERS [len-1].x == -1) {
-		TOWERS [len-1].x = cX -9; 
-  		TOWERS [len-1].y = cY -9;
+  	if (len > 0 && towerList [len-1].x == -1) {
+		//towerList [len-1].x = cX -9; 
+  		//towerList [len-1].y = cY -9;
+  		towerList [len-1].setPosition (cX-9, cY-9);
+
   		CURSOR_STYLE = 0;
   	}
 };

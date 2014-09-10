@@ -1,8 +1,10 @@
 var CANVAS_WIDTH = 960;
 var CANVAS_HEIGHT = 480;
-var TOWERS = [];
-var ENEMIES = [];
+var TILE_SIDE = 40;
+var towerList = [];
+var enemyList = [];
 var CURSOR_STYLE = 0;
+
 var mouseX;
 var mouseY;
 var hordeCooldown = 0;

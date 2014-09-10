@@ -4,7 +4,7 @@ function render () {
 	}
 
 	if (yellowTowerReady){
-		TOWERS.forEach(function (obj){
+		towerList.forEach(function (obj){
 			if (obj.x != -1)
 			{
 				// Put image on center of mouse click
@@ -21,7 +21,7 @@ function render () {
 	}
 
 
-	ENEMIES.forEach(function (obj){
+	enemyList.forEach(function (obj){
 		// Put image on center of mouse click
 		ctx.drawImage(obj.image, obj.x-15, obj.y-15);
 		ctx.fillRect(obj.x,obj.y,1,1); 
@@ -33,7 +33,7 @@ function render () {
 	{
 		document.body.style.cursor = 'crosshair';
 		//console.log(mouseX);
-		var r = TOWERS[TOWERS.length-1].radius;
+		var r = towerList[towerList.length-1].radius;
 		ctx.beginPath();
 		ctx.arc(mouseX,mouseY,r,0,2*Math.PI);
 		ctx.strokeStyle="#AAA";
@@ -48,7 +48,7 @@ function render () {
 	ctx.font = "30px Helvetica";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
-	ctx.fillText("Money: " + float2int(totalMoney) + "   Castle Hits: " castleHits, 10, 0);
+	ctx.fillText("Money: " + float2int(totalMoney) + "   Castle Hits: " + castleHits, 10, 0);
 }
 
 function update (modifier) {
@@ -70,12 +70,12 @@ function update (modifier) {
 					if (32 in keysDown)
 						createEnemy(ENEMY);
 
-	ENEMIES.forEach(function (obj,index){
+	enemyList.forEach(function (obj,index){
 			var hit = obj.move();
 			if (hit == 1)
 			{
 				castleHits++;
-				ENEMIES.splice(index, 1);
+				enemyList.splice(index, 1);
 			}
 		}
 	);
@@ -100,13 +100,13 @@ var createTower = function (_tower){
 		CURSOR_STYLE = 1;
 
 		var newTower = new Tower (_tower); //fix values later
-		var len = TOWERS.length;
+		var len = towerList.length;
 
 		if (len == 0)
-			TOWERS.push(newTower);
+			towerList.push(newTower);
 		else
-			if (TOWERS [len-1].x != -1)
-				TOWERS.push(newTower);
+			if (towerList [len-1].x != -1)
+				towerList.push(newTower);
 };
 
 
@@ -121,5 +121,5 @@ function createTowerButton(color, image, range, impact, cooldown) {
 function createEnemy(_enemy){
 	var newEnemy = new Enemy (_enemy);
 
-	ENEMIES.push(newEnemy);
+	enemyList.push(newEnemy);
 }

@@ -3,7 +3,7 @@ var CANVAS_HEIGHT = 480;
 var TILE_SIDE = 40;
 var towerList = [];
 var enemyList = [];
-var CURSOR_STYLE = 0;
+var cursorStyle = 0;
 
 var mouseX;
 var mouseY;

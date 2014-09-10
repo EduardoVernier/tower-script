@@ -5,15 +5,18 @@ function render () {
 
 	if (yellowTowerReady){
 		towerList.forEach(function (obj){
-			if (obj.x != -1)
+			var temp = obj.getPosition();
+			var x = temp.x;
+			var y = temp.y;
+			if (x != -1)
 			{
 				// Put image on center of mouse click
-				ctx.drawImage(obj.image, obj.x-20, obj.y-20);
+				ctx.drawImage(obj.image, x-20, y-20);
 				
-				ctx.fillRect(obj.x,obj.y,1,1); 
+				ctx.fillRect(x,y,1,1); 
 				// Draw radius circle
 				ctx.beginPath();
-				ctx.arc(obj.x,obj.y,obj.radius,0,2*Math.PI);
+				ctx.arc(x,y,obj.radius,0,2*Math.PI);
 				ctx.strokeStyle="#CCCCCC";
 				ctx.stroke();
 			}
@@ -29,7 +32,7 @@ function render () {
 		}
 	);
 
-	if (CURSOR_STYLE == 1)
+	if (cursorStyle == 1)
 	{
 		document.body.style.cursor = 'crosshair';
 		//console.log(mouseX);
@@ -49,7 +52,7 @@ function render () {
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
 	ctx.fillText("Money: " + float2int(totalMoney) + "   Castle Hits: " + castleHits, 10, 0);
-}
+};
 
 function update (modifier) {
 	totalMoney = totalMoney + modifier*10;
@@ -97,16 +100,20 @@ function reset () {
 
 
 var createTower = function (_tower){
-		CURSOR_STYLE = 1;
+		cursorStyle = 1;
 
-		var newTower = new Tower (_tower); //fix values later
+		var newTower = Tower(); 
+		newTower.initialize(_tower);
 		var len = towerList.length;
 
-		if (len == 0)
+		if (len == 0) 
 			towerList.push(newTower);
 		else
-			if (towerList [len-1].x != -1)
+		{
+			var temp = towerList [len-1].getPosition();
+			if (temp.x != -1)
 				towerList.push(newTower);
+		}
 };
 
 

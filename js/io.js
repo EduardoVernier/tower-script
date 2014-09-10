@@ -17,12 +17,14 @@ function canvasClick(event)
   	var canvas = document.getElementById("canvas");
   	var len = towerList.length; 
 
-  	if (len > 0 && towerList [len-1].x == -1) {
+  	var temp =  towerList [len-1].getPosition();
+
+  	if (len > 0 && temp.x == -1) {
 		//towerList [len-1].x = cX -9; 
   		//towerList [len-1].y = cY -9;
   		towerList [len-1].setPosition (cX-9, cY-9);
 
-  		CURSOR_STYLE = 0;
+  		cursorStyle = 0;
   	}
 };
 

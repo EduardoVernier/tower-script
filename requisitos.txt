@@ -5,6 +5,7 @@ R1ˆ Definição e uso de classes (sejam utilitárias ou para representar as
 estruturas de dados utilizadas pelo programa)
 	Tower.js, Enemy.js
 R2ˆ Encapsulamento e proteção dos atributos, com os devidos métodos de manipulação (setters/getters).
+	
 ˆR3 Especificação de construtores-padrão para a inicialização dos atributos e, quando possível, construtores
 ˆR4 Especificação de destrutores (ou métodos de clean-up), se necessário.
 ˆR5 Organização do código em espaços de nome diferenciados, conforme a função ou estrutura de cada classe

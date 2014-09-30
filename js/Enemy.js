@@ -1,3 +1,4 @@
+
 function Enemy (_enemy){
 	this.health = _enemy.health;
 	this.speed = _enemy.speed;

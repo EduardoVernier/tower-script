@@ -9,27 +9,24 @@ var mouseX;
 var mouseY;
 var hordeCooldown = 0;
 var castleHits = 0;
-var YELLOW_TOWER = {
-	color:"Yellow",
-	image: '', 
-	radius: 100,
-	impact: 20,
-	cooldown: 0.5,
-	simultaneousTargets: 1,
-	price: 50
-};
-var GREEN_TOWER = {
-	color:"Green",
-	image: '', 
-	radius: 100,
-	impact: 5,
-	cooldown: 0.1,
-	simultaneousTargets: 1,
-	price: 60
-};
+
+// Crockford's suggestion on implementing inheritance
+if (typeof Object.create !== 'function'){
+	Object.create = function (o){
+		var F = function(){};
+		F.prototype = o;
+		return new F();
+	};
+}
+
+Tower = initFirstTower();
+YellowTower = initFirstYellowTower();
+GreenTower = initFirstGreenTower();
+
+
 var BLUE_TOWER = {
 	color:"Blue",
-	image: '', 
+	image: '',
 	radius: 65,
 	impact: 10,
 	cooldown: 0.5,
@@ -38,7 +35,7 @@ var BLUE_TOWER = {
 };
 var ORANGE_TOWER = {
 	color:"Orage",
-	image: '', 
+	image: '',
 	radius: 170,
 	impact: 200,
 	cooldown: 2,
@@ -60,6 +57,15 @@ var ctx;
 setCanvas();
 
 
+// Handle keyboard controls
+var keysDown = {};
+addEventListener("keydown", function (e) {
+	keysDown[e.keyCode] = true;
+}, false);
+addEventListener("keyup", function (e) {
+	delete keysDown[e.keyCode];
+}, false);
+
 
 // Setting buttons and Images
 var bgReady = false;
@@ -72,16 +78,13 @@ var yellowTowerReady = false;
 var yellowTowerImage = new Image();
 yellowTowerImage.onload = function () { yellowTowerReady = true;};
 yellowTowerImage.src = "images/t1.png";
-//var yellowTowerButton = createTowerButton("Yellow", yellowTowerImage, 100, 20, 0.5);
-//document.body.appendChild(yellowTowerButton);
-YELLOW_TOWER.image = yellowTowerImage;
+YellowTower.image = yellowTowerImage;
 
 var greenTowerReady = false;
 var greenTowerImage = new Image();
 greenTowerImage.onload = function () { greenTowerReady = true;};
 greenTowerImage.src = "images/t2.png";
-GREEN_TOWER.image = greenTowerImage;
-
+GreenTower.image = greenTowerImage;
 
 var blueTowerReady = false;
 var blueTowerImage = new Image();
@@ -100,15 +103,6 @@ var enemyImage = new Image();
 enemyImage.onload = function () { enemyReady = true;};
 enemyImage.src = "images/enemy.png";
 ENEMY.image = enemyImage;
-
-// Handle keyboard controls
-var keysDown = {};
-addEventListener("keydown", function (e) {
-	keysDown[e.keyCode] = true;
-}, false);
-addEventListener("keyup", function (e) {
-	delete keysDown[e.keyCode];
-}, false);
 
 
 
@@ -135,5 +129,3 @@ var then = Date.now();
 reset();
 main();
 
-
-// Functions

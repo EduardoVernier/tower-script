@@ -3,26 +3,24 @@ function render () {
 		ctx.drawImage(bgImage, 0, 0);
 	}
 
-	if (yellowTowerReady){
-		towerList.forEach(function (obj){
-			var temp = obj.getPosition();
-			var x = temp.x;
-			var y = temp.y;
-			if (x != -1)
-			{
-				// Put image on center of mouse click
-				ctx.drawImage(obj.image, x-20, y-20);
-				
-				ctx.fillRect(x,y,1,1); 
-				// Draw radius circle
-				ctx.beginPath();
-				ctx.arc(x,y,obj.radius,0,2*Math.PI);
-				ctx.strokeStyle="#CCCCCC";
-				ctx.stroke();
-			}
-		});
-	}
-
+	towerList.forEach(function (obj){
+		var temp = obj.getPosition();
+		var x = temp.x;
+		var y = temp.y;
+		if (x != -1)
+		{
+			// Put image on center of mouse click
+			ctx.drawImage(obj.image, x-20, y-20);
+			
+			ctx.fillRect(x,y,1,1); 
+			// Draw radius circle
+			ctx.beginPath();
+			ctx.arc(x,y,obj.radius,0,2*Math.PI);
+			ctx.strokeStyle="#CCCCCC";
+			ctx.stroke();
+		}
+	});
+	
 
 	enemyList.forEach(function (obj){
 		// Put image on center of mouse click
@@ -41,7 +39,6 @@ function render () {
 		ctx.arc(mouseX,mouseY,r,0,2*Math.PI);
 		ctx.strokeStyle="#AAA";
 		ctx.stroke();
-
 	}
 	else
 		document.body.style.cursor = 'default';
@@ -59,19 +56,15 @@ function update (modifier) {
 	//console.log(keysDown);
 
 	if (81 in keysDown) 
-			createTower(YELLOW_TOWER);
-	else 
-		if (87 in keysDown)
-			createTower(GREEN_TOWER);
-		else 
-			if (69 in keysDown)
-				createTower(BLUE_TOWER);
-			else
-				if (82 in keysDown)
-					createTower(ORANGE_TOWER);
-				else
-					if (32 in keysDown)
-						createEnemy(ENEMY);
+		createYellowTower();
+	else if (87 in keysDown)
+		createGreenTower();
+	else if (69 in keysDown)
+		createTower(BLUE_TOWER);
+	else if (82 in keysDown)
+		createTower(ORANGE_TOWER);
+	else if (32 in keysDown)
+		createEnemy(ENEMY);
 
 	enemyList.forEach(function (obj,index){
 			var hit = obj.move();
@@ -130,3 +123,5 @@ function createEnemy(_enemy){
 
 	enemyList.push(newEnemy);
 }
+
+

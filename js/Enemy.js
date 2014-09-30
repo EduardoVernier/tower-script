@@ -6,7 +6,7 @@ function Enemy (_enemy){
 	this.x = -1;
 	this.y = CANVAS_HEIGHT/2 + TILE_SIDE/2;
 	this.direction =  (Math.random()>0.5)? 0 : 1;
-
+	this.alive = true;
 }
 
 Enemy.prototype.move = function (){
@@ -34,8 +34,7 @@ Enemy.prototype.move = function (){
 				this.y -= this.speed; 
 			else if (this.x < CANVAS_WIDTH) 
 				this.x += this.speed;
-			else if (this.x == CANVAS_WIDTH)
-				return 1;
+			else return 1;
 		}
 
 		return 0;

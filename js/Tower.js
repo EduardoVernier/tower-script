@@ -18,12 +18,6 @@ var initFirstTower = function(){
 		getPosition: getPosition
 	};
 
-	//function setPosition (_x,_y){
-	//	this.x = _x; 
-	//	this.y = _y;
-	//}
-
-
 	function setPosition (_x,_y){
 		function checkNeighborhood (_x,_y){
 			function euclideanDistance (x1,y1,x2,y2){
@@ -69,7 +63,7 @@ var initFirstTower = function(){
 		{
 			checkNeighborhood(_x,_y);
 		}
-		else if ((_x > 19*TILE_SIDE)&&(y > 0 && _y < 6*TILE_SIDE))
+		else if ((_x > 19*TILE_SIDE)&&(_y > 0 && _y < 6*TILE_SIDE))
 		{
 			checkNeighborhood(_x,_y);
 		}
@@ -82,4 +76,5 @@ var initFirstTower = function(){
 	function getPosition(){
 		return {x:this.x,y:this.y}
 	};	
+
 };

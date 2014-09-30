@@ -8,6 +8,14 @@ var initFirstGreenTower = function(){
 	newTower.price = 60;
 	newTower.x = -1;
 	newTower.y = -1;
+
+	// Setting image
+	var greenTowerReady = false;
+	var greenTowerImage = new Image();
+	greenTowerImage.onload = function () { greenTowerReady = true;};
+	greenTowerImage.src = "images/t2.png";
+	newTower.image = greenTowerImage;
+
 	return newTower;
 };
 

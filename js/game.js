@@ -1,7 +1,48 @@
 function render () {
+
+
 	if (bgReady) {
 		ctx.drawImage(bgImage, 0, 0);
 	}
+
+
+	// Attack
+	towerList.forEach(function (t){
+		function euclideanDistance (x1,y1,x2,y2){
+			return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
+		};
+		var nKilling = 0;
+
+		for (var i = 0; i < enemyList.length; i++){			
+			if (enemyList[i] != undefined){
+
+				if (nKilling >= t.simultaneousTargets)
+					break;
+
+				if (enemyList[i].health > 0)
+				{
+					if (euclideanDistance(t.x,t.y,enemyList[i].x,enemyList[i].y) < t.radius){
+						enemyList[i].health -= t.impact;
+						
+						ctx.beginPath();
+						ctx.moveTo(t.x,t.y);
+						ctx.lineTo(enemyList[i].x,enemyList[i].y);
+						ctx.strokeStyle="#CC0000";
+						ctx.stroke();
+
+						nKilling++;
+					}
+				} 
+				else {
+					enemyList.splice (i,1);
+				}
+			}	
+
+
+		}
+
+	});
+
 
 	towerList.forEach(function (obj){
 		var temp = obj.getPosition();
@@ -24,11 +65,11 @@ function render () {
 
 	enemyList.forEach(function (obj){
 		// Put image on center of mouse click
-		ctx.drawImage(obj.image, obj.x-15, obj.y-15);
-		ctx.fillRect(obj.x,obj.y,1,1); 
-
+		if (obj.health > 0){	
+			ctx.drawImage(obj.image, obj.x-15, obj.y-15);
+			ctx.fillRect(obj.x,obj.y,1,1); 
 		}
-	);
+	});
 
 	if (cursorStyle == 1)
 	{
@@ -60,15 +101,18 @@ function update (modifier) {
 	else if (87 in keysDown)
 		createGreenTower();
 	else if (69 in keysDown)
-		createTower(BLUE_TOWER);
+		createBlueTower();
 	else if (82 in keysDown)
-		createTower(ORANGE_TOWER);
+		createOrangeTower();
 	else if (32 in keysDown)
 		createEnemy(ENEMY);
 
+
+
+	// Tower hit
 	enemyList.forEach(function (obj,index){
 			var hit = obj.move();
-			if (hit == 1)
+			if (obj.health > 0 && hit == 1)
 			{
 				castleHits++;
 				enemyList.splice(index, 1);
@@ -78,11 +122,18 @@ function update (modifier) {
 
 
 	hordeCooldown += modifier;
-	if (hordeCooldown > 10) //
+	if (hordeCooldown > 6) //
 	{
+		var wait = 0;
+		for (var i = 0; i < hordeSize; i++)
+		{
 
-		createEnemy(ENEMY);
+			setTimeout(function(){createEnemy(ENEMY);}, wait);
+			wait += 200;
+		}
+
 		hordeCooldown = 0;
+		hordeSize = hordeSize*1.5;
 	}
 	
 };

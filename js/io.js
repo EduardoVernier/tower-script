@@ -35,4 +35,3 @@ function mouseMonitor(event){
 function float2int (value) {
     return value | 0;
 };
-

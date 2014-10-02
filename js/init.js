@@ -57,13 +57,16 @@ addEventListener("keyup", function (e) {
 var bgReady = false;
 var bgImage = new Image();
 bgImage.onload = function () { bgReady = true;};
-bgImage.src = "images/map.png";
+//bgImage.src = "images/map.png";
+bgImage.src = "images/mapDW.png";
 document.body.appendChild(document.createElement("br"));
+
 
 var enemyReady = false;
 var enemyImage = new Image();
 enemyImage.onload = function () { enemyReady = true;};
-enemyImage.src = "images/enemy.png";
+//enemyImage.src = "images/enemy.png";
+enemyImage.src = "images/dalek.png";
 ENEMY.image = enemyImage;
 
 
@@ -73,9 +76,8 @@ var main = function () {
 	var now = Date.now();
 	var delta = now - then;
 
-	update(delta / 1000);
 	render();
-
+	update(delta / 1000);
 
 	then = now;
 

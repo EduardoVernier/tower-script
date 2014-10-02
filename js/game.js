@@ -1,49 +1,10 @@
 function render () {
-
-
+	// Render Background
 	if (bgReady) {
 		ctx.drawImage(bgImage, 0, 0);
 	}
 
-
-	// Attack
-	towerList.forEach(function (t){
-		function euclideanDistance (x1,y1,x2,y2){
-			return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
-		};
-		var nKilling = 0;
-
-		for (var i = 0; i < enemyList.length; i++){			
-			if (enemyList[i] != undefined){
-
-				if (nKilling >= t.simultaneousTargets)
-					break;
-
-				if (enemyList[i].health > 0)
-				{
-					if (euclideanDistance(t.x,t.y,enemyList[i].x,enemyList[i].y) < t.radius){
-						enemyList[i].health -= t.impact;
-						
-						ctx.beginPath();
-						ctx.moveTo(t.x,t.y);
-						ctx.lineTo(enemyList[i].x,enemyList[i].y);
-						ctx.strokeStyle="#CC0000";
-						ctx.stroke();
-
-						nKilling++;
-					}
-				} 
-				else {
-					enemyList.splice (i,1);
-				}
-			}	
-
-
-		}
-
-	});
-
-
+	// Render towers
 	towerList.forEach(function (obj){
 		var temp = obj.getPosition();
 		var x = temp.x;
@@ -62,7 +23,7 @@ function render () {
 		}
 	});
 	
-
+	// Render enemies
 	enemyList.forEach(function (obj){
 		// Put image on center of mouse click
 		if (obj.health > 0){	
@@ -71,6 +32,7 @@ function render () {
 		}
 	});
 
+	// Renders current cursor
 	if (cursorStyle == 1)
 	{
 		document.body.style.cursor = 'crosshair';
@@ -84,18 +46,61 @@ function render () {
 	else
 		document.body.style.cursor = 'default';
 
-	// Score
-	ctx.fillStyle = "rgb(0, 0, 0)";
-	ctx.font = "30px Helvetica";
+	// Render score	
+	ctx.fillStyle = "rgb(255, 255, 255)";
+	ctx.font = "30px Calibri";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
-	ctx.fillText("Money: " + float2int(totalMoney) + "   Castle Hits: " + castleHits, 10, 0);
+	ctx.fillText("Money: " + float2int(totalMoney) + "   Castle Hits: " + castleHits, 10, 440);
+	
+	
 };
 
 function update (modifier) {
-	totalMoney = totalMoney + modifier*10;
-	//console.log(keysDown);
+	// Update money based on time passed
+	totalMoney = totalMoney + modifier*10;	
 
+	// Attack
+	towerList.forEach(function (t){
+		if (t.unlocked){
+			function euclideanDistance (x1,y1,x2,y2){
+				return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
+			};
+			var nKilling = 0;
+
+			for (var i = 0; i < enemyList.length; i++){			
+				if (enemyList[i] != undefined){
+					if (nKilling >= t.simultaneousTargets)
+						break;
+
+					if (enemyList[i].health > 0)
+					{
+						if (euclideanDistance(t.x,t.y,enemyList[i].x,enemyList[i].y) < t.radius){
+							enemyList[i].health -= t.impact;
+							
+							ctx.beginPath();
+							ctx.moveTo(t.x,t.y);
+							ctx.lineTo(enemyList[i].x,enemyList[i].y);
+							ctx.strokeStyle="#CC0000";
+							ctx.stroke();
+
+							nKilling++;
+						}
+					} 
+					else {
+						enemyList.splice (i,1);
+					}
+				}	
+			}
+
+			if (nKilling > 0){
+				t.unlocked = false;
+				setTimeout(function(){ t.unlocked = true;}, t.cooldown);
+			}			
+		}
+	});
+
+	// Check keyboard
 	if (81 in keysDown) 
 		createYellowTower();
 	else if (87 in keysDown)
@@ -106,8 +111,6 @@ function update (modifier) {
 		createOrangeTower();
 	else if (32 in keysDown)
 		createEnemy(ENEMY);
-
-
 
 	// Tower hit
 	enemyList.forEach(function (obj,index){
@@ -120,59 +123,32 @@ function update (modifier) {
 		}
 	);
 
-
+	// Generate enemies
 	hordeCooldown += modifier;
-	if (hordeCooldown > 6) //
-	{
+	if (hordeCooldown > 6){
 		var wait = 0;
-		for (var i = 0; i < hordeSize; i++)
-		{
-
+		for (var i = 0; i < hordeSize; i++)	{
+			// Fix this. Causing lag.
 			setTimeout(function(){createEnemy(ENEMY);}, wait);
 			wait += 200;
 		}
-
 		hordeCooldown = 0;
 		hordeSize = hordeSize*1.5;
+		ENEMY.health = ENEMY.health*1.1;
 	}
-	
 };
 
-function reset () {
-	var i = "hi";
-};
-
-
-var createTower = function (_tower){
-		cursorStyle = 1;
-
-		var newTower = Tower(); 
-		newTower.initialize(_tower);
-		var len = towerList.length;
-
-		if (len == 0) 
-			towerList.push(newTower);
-		else
-		{
-			var temp = towerList [len-1].getPosition();
-			if (temp.x != -1)
-				towerList.push(newTower);
-		}
-};
-
-
-function createTowerButton(color, image, range, impact, cooldown) {
-	var newButton = document.createElement("button");
-	newButton.innerHTML = color;
-
-	newButton.onclick = createTower(color, image, range, impact, cooldown);
-	return newButton;
-};
 
 function createEnemy(_enemy){
 	var newEnemy = new Enemy (_enemy);
-
 	enemyList.push(newEnemy);
-}
+};
+
+
+function reset () {
+	// TO-DO
+	var i = "hi";
+};
+
 
 

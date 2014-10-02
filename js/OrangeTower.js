@@ -1,13 +1,14 @@
 var initFirstOrangeTower = function(){
 	var newTower = Object.create(Tower);
 	newTower.color = "Orange";
-	newTower.radius = 170;
-	newTower.impact = 120;
-	newTower.cooldown = 2;
-	newTower.simultaneousTargets = 1;
+	newTower.radius = 100;
+	newTower.impact = 20;
+	newTower.cooldown = 5;
+	newTower.simultaneousTargets = 20;
 	newTower.price = 100;
 	newTower.x = -1;
 	newTower.y = -1;
+	newTower.unlocked = true;
 
 	// Setting image
 	var orangeTowerReady = false;
@@ -32,5 +33,7 @@ var createOrangeTower = function(){
 		var temp = towerList [len-1].getPosition();
 		if (temp.x != -1)
 			towerList.push(newTower);
+		else
+			towerList [len-1] = (newTower);
 	}
 };

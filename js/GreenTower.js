@@ -1,14 +1,14 @@
 var initFirstGreenTower = function(){
 	var newTower = Object.create(Tower);
 	newTower.color = "Green";
-	newTower.radius = 100;
-	newTower.impact = 5;
-	newTower.cooldown = 0.1;
+	newTower.radius = 70;
+	newTower.impact = 200;
+	newTower.cooldown = 50;
 	newTower.simultaneousTargets = 1;
-	newTower.price = 60;
+	newTower.price = 50;
 	newTower.x = -1;
 	newTower.y = -1;
-
+	newTower.unlocked = true;
 	// Setting image
 	var greenTowerReady = false;
 	var greenTowerImage = new Image();
@@ -32,5 +32,7 @@ var createGreenTower = function(){
 		var temp = towerList [len-1].getPosition();
 		if (temp.x != -1)
 			towerList.push(newTower);
+		else
+			towerList [len-1] = (newTower);
 	}
 };

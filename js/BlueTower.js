@@ -1,14 +1,14 @@
 var initFirstBlueTower = function(){
 	var newTower = Object.create(Tower);
 	newTower.color = "Blue";
-	newTower.radius = 60;
-	newTower.impact = 10;
-	newTower.cooldown = 0.5;
-	newTower.simultaneousTargets = 10;
-	newTower.price = 80;
+	newTower.radius = 200;
+	newTower.impact = 1000;
+	newTower.cooldown = 600;
+	newTower.simultaneousTargets = 2;
+	newTower.price = 50;
 	newTower.x = -1;
 	newTower.y = -1;
-
+	newTower.unlocked = true;
 	// Setting image
 	var blueTowerReady = false;
 	var blueTowerImage = new Image();
@@ -32,5 +32,7 @@ var createBlueTower = function(){
 		var temp = towerList [len-1].getPosition();
 		if (temp.x != -1)
 			towerList.push(newTower);
+		else
+			towerList [len-1] = (newTower);
 	}
 };

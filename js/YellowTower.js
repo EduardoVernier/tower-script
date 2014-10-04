@@ -16,7 +16,7 @@ var initFirstYellowTower = function(){
 	var yellowTowerReady = false;
 	var yellowTowerImage = new Image();
 	yellowTowerImage.onload = function () { yellowTowerReady = true;};
-	yellowTowerImage.src = "images/t1.png";
+	yellowTowerImage.src = "images/k9_golden.png";
 	newTower.image = yellowTowerImage;
 
 	return newTower;

@@ -13,7 +13,7 @@ var initFirstBlueTower = function(){
 	var blueTowerReady = false;
 	var blueTowerImage = new Image();
 	blueTowerImage.onload = function () { blueTowerReady = true;};
-	blueTowerImage.src = "images/t3.png";
+	blueTowerImage.src = "images/k9_blue.png";
 	newTower.image = blueTowerImage;
 
 	return newTower;

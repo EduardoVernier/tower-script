@@ -20,7 +20,7 @@ Enemy.prototype.move = function (){
 				this.x += this.speed;
 			else if (this.y < 6*TILE_SIDE + TILE_SIDE/2)
 				this.y += this.speed; 
-			else if (this.x < CANVAS_WIDTH) 
+			else if (this.x < CANVAS_WIDTH-75) 
 				this.x += this.speed;
 			else return 1;
 		}
@@ -32,7 +32,7 @@ Enemy.prototype.move = function (){
 				this.x += this.speed;
 			else if (this.y > 6*TILE_SIDE + TILE_SIDE/2)
 				this.y -= this.speed; 
-			else if (this.x < CANVAS_WIDTH) 
+			else if (this.x < CANVAS_WIDTH-75) 
 				this.x += this.speed;
 			else return 1;
 		}

@@ -8,10 +8,13 @@ var enemyList = [];
 var cursorStyle = 0;
 var mouseX;
 var mouseY;
-var hordeCooldown = 0;
-var hordeSize = 1;
 var castleHits = 0;
 var totalMoney = 100;
+var hordeSize = 1;
+var hordeCount = 1;
+var releaseEnemy = 5;
+
+var tardisAlpha = 1;
 
 
 // Crockford's suggestion on implementing inheritance
@@ -68,6 +71,13 @@ enemyImage.onload = function () { enemyReady = true;};
 //enemyImage.src = "images/enemy.png";
 enemyImage.src = "images/dalek.png";
 ENEMY.image = enemyImage;
+
+var tardisReady = false;
+var tardisImage = new Image();
+tardisImage.onload = function () { tardisReady = true;};
+//enemyImage.src = "images/enemy.png";
+tardisImage.src = "images/tardis.png";
+tardis = tardisImage;
 
 
 

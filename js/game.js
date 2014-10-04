@@ -1,5 +1,8 @@
 function render () {
-	// Render Background
+	// Clear canvas
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	
+	// Render Background (path)
 	if (bgReady) {
 		ctx.drawImage(bgImage, 0, 0);
 	}
@@ -13,13 +16,14 @@ function render () {
 		{
 			// Put image on center of mouse click
 			ctx.drawImage(obj.image, x-20, y-20);
-			
+			/*
 			ctx.fillRect(x,y,1,1); 
 			// Draw radius circle
 			ctx.beginPath();
 			ctx.arc(x,y,obj.radius,0,2*Math.PI);
 			ctx.strokeStyle="#CCCCCC";
 			ctx.stroke();
+			*/
 		}
 	});
 	
@@ -31,6 +35,13 @@ function render () {
 			ctx.fillRect(obj.x,obj.y,1,1); 
 		}
 	});
+
+	// Render TARDIS
+	if (tardisReady) {
+		ctx.globalAlpha = tardisAlpha;
+		ctx.drawImage(tardis, 900, 200);
+		ctx.globalAlpha = 1;
+	}
 
 	// Renders current cursor
 	if (cursorStyle == 1)
@@ -77,13 +88,26 @@ function update (modifier) {
 					{
 						if (euclideanDistance(t.x,t.y,enemyList[i].x,enemyList[i].y) < t.radius){
 							enemyList[i].health -= t.impact;
-							
 							ctx.beginPath();
-							ctx.moveTo(t.x,t.y);
+							ctx.moveTo(t.x-18,t.y-5);
 							ctx.lineTo(enemyList[i].x,enemyList[i].y);
-							ctx.strokeStyle="#CC0000";
-							ctx.stroke();
+							
+							switch(t.color){
+								case "Yellow":
+									ctx.strokeStyle="#FFFF00";
+									break;
+								case "Blue":
+									ctx.strokeStyle="#0000FF";
+									break;
+								case "Green":
+									ctx.strokeStyle="#00FF00";
+									break;
+								case "Orange":
+									ctx.strokeStyle="#D69303";
+									break
 
+							}
+							ctx.stroke();
 							nKilling++;
 						}
 					} 
@@ -118,24 +142,31 @@ function update (modifier) {
 			if (obj.health > 0 && hit == 1)
 			{
 				castleHits++;
+				tardisAlpha -= 0.12;
 				enemyList.splice(index, 1);
 			}
 		}
 	);
 
 	// Generate enemies
-	hordeCooldown += modifier;
-	if (hordeCooldown > 6){
-		var wait = 0;
-		for (var i = 0; i < hordeSize; i++)	{
-			// Fix this. Causing lag.
-			setTimeout(function(){createEnemy(ENEMY);}, wait);
-			wait += 200;
+	releaseEnemy -= modifier;
+	if (releaseEnemy < 0){		
+		hordeSize--;	
+		createEnemy(ENEMY);
+		releaseEnemy += 0.2;
+		
+		if (hordeSize <= 0){
+			releaseEnemy += 5;
+			hordeCount++;
+			hordeSize = hordeCount*hordeCount;
+			ENEMY.health = ENEMY.health*1.2;
+			if (hordeCount % 5 == 0)
+				ENEMY.speed++;
+
 		}
-		hordeCooldown = 0;
-		hordeSize = hordeSize*1.5;
-		ENEMY.health = ENEMY.health*1.1;
 	}
+
+	
 };
 
 

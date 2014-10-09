@@ -112,6 +112,7 @@ function update (modifier) {
 						}
 					} 
 					else {
+						totalMoney += 100;
 						enemyList.splice (i,1);
 					}
 				}	

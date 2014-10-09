@@ -36,7 +36,8 @@ OrangeTower = initFirstOrangeTower();
 var ENEMY = {
 	health: 1000,
 	speed: 3,
-	image:''
+	image:'',
+	bounty: 100
 }
 
 

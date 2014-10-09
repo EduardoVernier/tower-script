@@ -19,9 +19,12 @@ function canvasClick(event)
 
 	var temp =  towerList [len-1].getPosition();
 
-	if (len > 0 && temp.x == -1) {
+	// Position tower
+	if (len > 0 && temp.x == -1 
+		&& totalMoney - towerList[len-1].price >0) {
 		towerList [len-1].setPosition (cX-9, cY-9);
 		cursorStyle = 0;
+		totalMoney -= towerList[len-1].price
 	}
 };
 

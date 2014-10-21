@@ -16,6 +16,7 @@ var releaseEnemy = 5;
 
 var tardisAlpha = 1;
 var timeStart;
+var score;
 
 
 // Crockford's suggestion on implementing inheritance

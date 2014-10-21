@@ -62,7 +62,8 @@ function render () {
 	ctx.font = "30px Calibri";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
-	ctx.fillText("Money: " + float2int(totalMoney) + "   Score: " + Math.floor((Date.now() - timeStart)/1000), 10, 440);
+	score = Math.floor((Date.now() - timeStart)/1000);
+	ctx.fillText("Money: " + float2int(totalMoney) + "   Score: " + score, 10, 440);
 
 	ctx.fillText(8-castleHits, 944, 280);
 
@@ -70,13 +71,13 @@ function render () {
 	
 	// Render prices of towers
 	var s= document.getElementById("yellow");
-  	s.innerHTML = YellowTower.price;
+  	s.innerHTML = '$'+YellowTower.price;
 	var s= document.getElementById("green");
-  	s.innerHTML = GreenTower.price;
+  	s.innerHTML = '$'+GreenTower.price;
   	var s= document.getElementById("blue");
-  	s.innerHTML = BlueTower.price;
+  	s.innerHTML = '$'+BlueTower.price;
   	var s= document.getElementById("orange");
-  	s.innerHTML = OrangeTower.price;
+  	s.innerHTML = '$'+OrangeTower.price;
 
 };
 
@@ -184,7 +185,7 @@ function update (modifier) {
 
 	if(castleHits === 9 )
 	{
-		alert('Game Over!');
+		alert('Game Over!\nScore: '+ score);
 		castleHits++;
 	}
 

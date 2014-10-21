@@ -5,7 +5,7 @@ var initFirstGreenTower = function(){
 	newTower.impact = 200;
 	newTower.cooldown = 50;
 	newTower.simultaneousTargets = 1;
-	newTower.price = 50;
+	newTower.price = 50.00;
 	newTower.x = -1;
 	newTower.y = -1;
 	newTower.unlocked = true;
@@ -22,6 +22,8 @@ var initFirstGreenTower = function(){
 var createGreenTower = function(){
 	cursorStyle = 1;	
 	var newTower = Object.create(GreenTower);
+	// Create reference to parent object
+	newTower.parentObject = GreenTower; 
 
 	var len = towerList.length;
 

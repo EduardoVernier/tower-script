@@ -15,7 +15,8 @@ var initFirstTower = function(){
 
 	return {
 		setPosition: setPosition,
-		getPosition: getPosition
+		getPosition: getPosition,
+		updatePrice: updatePrice
 	};
 
 	function setPosition (_x,_y){
@@ -76,5 +77,9 @@ var initFirstTower = function(){
 	function getPosition(){
 		return {x:this.x,y:this.y}
 	};	
+
+	function updatePrice(){
+		this.price *= 1.15;
+	}
 
 };

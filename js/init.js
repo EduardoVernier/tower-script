@@ -1,4 +1,4 @@
-var CANVAS_WIDTH = 960;
+var CANVAS_WIDTH = 1000;
 var CANVAS_HEIGHT = 480;
 var TILE_SIDE = 40;
 
@@ -15,6 +15,7 @@ var hordeCount = 1;
 var releaseEnemy = 5;
 
 var tardisAlpha = 1;
+var timeStart;
 
 
 // Crockford's suggestion on implementing inheritance
@@ -103,5 +104,6 @@ requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame
 // Let's play this game!
 var then = Date.now();
 reset();
+var timeStart = Date.now();
 main();
 

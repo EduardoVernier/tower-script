@@ -9,7 +9,7 @@ function setCanvas (){
 };
 
 
-function canvasClick(event) 
+function canvasClick(event) // Place tower! Very important
 {
 	var cX = event.x;
 	var cY = event.y;
@@ -25,6 +25,9 @@ function canvasClick(event)
 		towerList [len-1].setPosition (cX-9, cY-9);
 		cursorStyle = 0;
 		totalMoney -= towerList[len-1].price
+ 		var newPrice = towerList[len-1].parentObject.price * 1.15;
+ 		towerList[len-1].parentObject.price = parseFloat(Math.round(newPrice * 100) / 100).toFixed(2);
+
 	}
 };
 

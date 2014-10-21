@@ -62,9 +62,22 @@ function render () {
 	ctx.font = "30px Calibri";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
-	ctx.fillText("Money: " + float2int(totalMoney) + "   Castle Hits: " + castleHits, 10, 440);
+	ctx.fillText("Money: " + float2int(totalMoney) + "   Score: " + Math.floor((Date.now() - timeStart)/1000), 10, 440);
+
+	ctx.fillText(8-castleHits, 944, 280);
+
+
 	
-	
+	// Render prices of towers
+	var s= document.getElementById("yellow");
+  	s.innerHTML = YellowTower.price;
+	var s= document.getElementById("green");
+  	s.innerHTML = GreenTower.price;
+  	var s= document.getElementById("blue");
+  	s.innerHTML = BlueTower.price;
+  	var s= document.getElementById("orange");
+  	s.innerHTML = OrangeTower.price;
+
 };
 
 function update (modifier) {
@@ -87,6 +100,7 @@ function update (modifier) {
 					if (enemyList[i].health > 0)
 					{
 						if (euclideanDistance(t.x,t.y,enemyList[i].x,enemyList[i].y) < t.radius){
+							// Shooting enemy
 							enemyList[i].health -= t.impact;
 							ctx.beginPath();
 							ctx.moveTo(t.x-18,t.y-5);
@@ -104,15 +118,15 @@ function update (modifier) {
 									break;
 								case "Orange":
 									ctx.strokeStyle="#D69303";
-									break
-
+									break;
 							}
 							ctx.stroke();
 							nKilling++;
 						}
 					} 
 					else {
-						totalMoney += 100;
+						// Enemy ded
+						//totalMoney += 100;
 						enemyList.splice (i,1);
 					}
 				}	
@@ -145,6 +159,7 @@ function update (modifier) {
 				castleHits++;
 				tardisAlpha -= 0.12;
 				enemyList.splice(index, 1);
+			
 			}
 		}
 	);
@@ -165,6 +180,12 @@ function update (modifier) {
 				ENEMY.speed++;
 
 		}
+	}
+
+	if(castleHits === 9 )
+	{
+		alert('Game Over!');
+		castleHits++;
 	}
 
 	

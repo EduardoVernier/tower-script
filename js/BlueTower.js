@@ -22,6 +22,8 @@ var initFirstBlueTower = function(){
 var createBlueTower = function(){
 	cursorStyle = 1;	
 	var newTower = Object.create(BlueTower);
+	// Create reference to parent object
+	newTower.parentObject = BlueTower; 
 
 	var len = towerList.length;
 

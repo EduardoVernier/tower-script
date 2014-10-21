@@ -4,6 +4,7 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  font-family: 'Lato', sans-serif;
 }
 
 #name {
@@ -11,3 +12,22 @@ html {
 	top: 20px;
 	left: 10px;
 }
+
+#priceBlock {
+	position: absolute;
+	top: 0px;
+	left: 750px;
+	height: auto;
+	width: auto;
+}
+
+#priceBlock p{
+	display: inline-block;
+	font-size: 20px;
+	padding-right: 20px;
+}
+
+#yellow{color: #F8F097;}
+#green { color: #8DD67F;}
+#blue {	color: #71B3C3;}
+#orange { color: #FFCB5E;}

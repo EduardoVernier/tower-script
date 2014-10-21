@@ -24,18 +24,22 @@ var initFirstYellowTower = function(){
 
 var createYellowTower = function(){
 	cursorStyle = 1;	
+	var newTower = Object.create(YellowTower);
+
+	// Create reference to parent object
+	newTower.parentObject = YellowTower; 
 	
 	var len = towerList.length;
 
 	if (len == 0) 
-		towerList.push(Object.create(YellowTower));
+		towerList.push(newTower);
 	else
 	{
 		var temp = towerList [len-1].getPosition();
-		if (temp.x > -1)
-			towerList.push(Object.create(YellowTower));
+		if (temp.x != -1)
+			towerList.push(newTower);
 		else
-			towerList [len-1] = (Object.create(YellowTower));
+			towerList [len-1] = (newTower);
 	}
 };
 

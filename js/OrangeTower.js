@@ -23,6 +23,8 @@ var initFirstOrangeTower = function(){
 var createOrangeTower = function(){
 	cursorStyle = 1;	
 	var newTower = Object.create(OrangeTower);
+	// Create reference to parent object
+	newTower.parentObject = OrangeTower; 
 
 	var len = towerList.length;
 

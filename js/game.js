@@ -50,8 +50,13 @@ function render () {
 		//console.log(mouseX);
 		var r = towerList[towerList.length-1].radius;
 		ctx.beginPath();
-		ctx.arc(mouseX,mouseY,r,0,2*Math.PI);
-		ctx.strokeStyle="#AAA";
+		ctx.arc(mouseX-8,mouseY-8,r,0,2*Math.PI);
+		// Makes circle green when you have enough money and red otherwise 
+		if (towerList[towerList.length-1].price <= totalMoney)
+			ctx.strokeStyle="#8DD67F";
+		else
+			ctx.strokeStyle="#E44242";
+			
 		ctx.stroke();
 	}
 	else
@@ -62,10 +67,13 @@ function render () {
 	ctx.font = "30px Calibri";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
-	score = Math.floor((Date.now() - timeStart)/1000);
+	if (releaseTheDaleks == true)
+		score = Math.floor((Date.now() - timeStart)/1000);
+	else
+		score = 0;
 	ctx.fillText("Money: " + float2int(totalMoney) + "   Score: " + score, 10, 440);
 
-	ctx.fillText(8-castleHits, 944, 280);
+
 
 
 	
@@ -83,8 +91,10 @@ function render () {
 
 function update (modifier) {
 	// Update money based on time passed
-	totalMoney = totalMoney + modifier*10;	
-
+	if (releaseTheDaleks)
+		totalMoney = totalMoney + modifier*10;	
+	else
+		totalMoney = 100;
 	// Attack
 	towerList.forEach(function (t){
 		if (t.unlocked){
@@ -166,28 +176,33 @@ function update (modifier) {
 	);
 
 	// Generate enemies
-	releaseEnemy -= modifier;
-	if (releaseEnemy < 0){		
-		hordeSize--;	
-		createEnemy(ENEMY);
-		releaseEnemy += 0.2;
-		
-		if (hordeSize <= 0){
-			releaseEnemy += 5;
-			hordeCount++;
-			hordeSize = hordeCount*hordeCount;
-			ENEMY.health = ENEMY.health*1.2;
-			if (hordeCount % 5 == 0)
-				ENEMY.speed++;
+	if (releaseTheDaleks == true){		
+		releaseEnemy -= modifier;
+		if (releaseEnemy < 0){		
+			hordeSize--;	
+			createEnemy(ENEMY);
+			releaseEnemy += 0.2;
+			
+			if (hordeSize <= 0){
+				releaseEnemy += 5;
+				hordeCount++;
+				hordeSize = hordeCount*hordeCount;
+				ENEMY.health = ENEMY.health*1.2;
+				if (hordeCount % 5 == 0)
+					ENEMY.speed++;
 
+			}
 		}
-	}
+	}		
 
-	if(castleHits === 9 )
+	// Checks if game is over
+	ctx.fillText(8-castleHits, 944, 280);
+	if(castleHits === 8 )
 	{
 		alert('Game Over!\nScore: '+ score);
 		castleHits++;
-	}
+	}	
+
 
 	
 };

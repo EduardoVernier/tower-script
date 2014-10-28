@@ -12,11 +12,12 @@ var castleHits = 0;
 var totalMoney = 100;
 var hordeSize = 1;
 var hordeCount = 1;
-var releaseEnemy = 5;
+var releaseEnemy = 1;
 
 var tardisAlpha = 1;
 var timeStart;
 var score;
+var releaseTheDaleks;
 
 
 // Crockford's suggestion on implementing inheritance
@@ -104,7 +105,10 @@ requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame
 
 // Let's play this game!
 var then = Date.now();
+var timeStart = 0;
+releaseTheDaleks = false;
 reset();
-var timeStart = Date.now();
+alert('Welcome to TardisDefense.\nThe game will begin as soon as you place your first K-9.\n\nYour K-9 options are:\n	\tYellow (Q) - Average speed, average impact, average range, two simultaneous targets;\n\tGreen (W) - Fast, low impact, low range, one target;\n\tBlue (E) - Slow, high impact, high range, four simultaneous targets;\n\tSiver (R) - Super Fast, low impact, average range, unlimited number of targets.\n\nPrices are displayed on the top right corner.\nYour TARDIS can take up to 8 hits.\nGood Luck!	');
+
 main();
 

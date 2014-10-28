@@ -21,10 +21,9 @@ function canvasClick(event) // Place tower! Very important
 
 	// Position tower
 	if (len > 0 && temp.x == -1 
-		&& totalMoney - towerList[len-1].price >=0) {
+	 && totalMoney - towerList[len-1].price >=0) {
 		towerList [len-1].setPosition (cX-9, cY-9);
 		cursorStyle = 0;
-		totalMoney -= towerList[len-1].price
  		var newPrice = towerList[len-1].parentObject.price * 1.20; // Price increase
  		towerList[len-1].parentObject.price = parseFloat(Math.round(newPrice * 100) / 100).toFixed(2);
  		// Enemies start to spawn after first tower is placed 

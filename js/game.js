@@ -201,6 +201,8 @@ function update (modifier) {
 	{
 		alert('Game Over!\nScore: '+ score);
 		castleHits++;
+		var w = window.open("db.html"+"?"+score);
+		
 	}	
 
 

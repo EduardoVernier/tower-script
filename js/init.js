@@ -108,7 +108,6 @@ var then = Date.now();
 var timeStart = 0;
 releaseTheDaleks = false;
 reset();
-alert('Welcome to TardisDefense.\nThe game will begin as soon as you place your first K-9.\n\nYour K-9 options are:\n	\tYellow (Q) - Average speed, average impact, average range, two simultaneous targets;\n\tGreen (W) - Fast, low impact, low range, one target;\n\tBlue (E) - Slow, high impact, high range, four simultaneous targets;\n\tSiver (R) - Super Fast, low impact, average range, unlimited number of targets.\n\nPrices are displayed on the top right corner.\nYour TARDIS can take up to 8 hits.\nGood Luck!	');
-
+alert('Welcome to TardisDefense.\nThe game will begin as soon as you place your first K-9.\n\nYour K-9 options are:\n	\tYellow (Q) - Average rate of fire, average impact, average range, two simultaneous targets;\n\tGreen (W) - High rate of fire, low impact, low range, one target;\n\tBlue (E) - Low rate of fire, high impact, high range, four simultaneous targets;\n\tSiver (R) - Very high rate of fire, low impact, average range, unlimited number of targets.\n\nPrices are displayed on the top right corner.\nYour TARDIS can take up to 8 hits.\nGood Luck!	');
 main();
 

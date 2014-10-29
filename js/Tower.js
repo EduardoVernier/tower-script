@@ -35,10 +35,13 @@ var initFirstTower = function(){
 			});
 
 			if (insideNeighborFlag == false){
+			    // Tower placed
 			    var len = towerList.length; 
     			towerList [len-1].x = _x; 
     			towerList [len-1].y = _y;
 				totalMoney -= towerList[len-1].price
+				var newPrice = towerList[len-1].parentObject.price * 1.20; // Price increase
+ 				towerList[len-1].parentObject.price = parseFloat(Math.round(newPrice * 100) / 100).toFixed(2);
 
 				// this.x = _x; bug wtf 
 				// this.y = _y; perdi 3 horas nisso

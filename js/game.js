@@ -8,7 +8,7 @@ function render () {
 	}
 
 	// Render towers
-	towerList.forEach(function (obj){
+	towerList.map(function (obj){
 		var temp = obj.getPosition();
 		var x = temp.x;
 		var y = temp.y;
@@ -16,19 +16,11 @@ function render () {
 		{
 			// Put image on center of mouse click
 			ctx.drawImage(obj.image, x-20, y-20);
-			/*
-			ctx.fillRect(x,y,1,1); 
-			// Draw radius circle
-			ctx.beginPath();
-			ctx.arc(x,y,obj.radius,0,2*Math.PI);
-			ctx.strokeStyle="#CCCCCC";
-			ctx.stroke();
-			*/
 		}
 	});
 	
 	// Render enemies
-	enemyList.forEach(function (obj){
+	enemyList.map(function (obj){
 		// Put image on center of mouse click
 		if (obj.health > 0){	
 			ctx.drawImage(obj.image, obj.x-15, obj.y-15);
@@ -96,7 +88,7 @@ function update (modifier) {
 	else
 		totalMoney = 100;
 	// Attack
-	towerList.forEach(function (t){
+	towerList.map(function (t){
 		if (t.unlocked){
 			function euclideanDistance (x1,y1,x2,y2){
 				return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
@@ -163,14 +155,13 @@ function update (modifier) {
 		createEnemy(ENEMY);
 
 	// Tower hit
-	enemyList.forEach(function (obj,index){
+	enemyList.map(function (obj,index){
 			var hit = obj.move();
 			if (obj.health > 0 && hit == 1)
 			{
 				castleHits++;
 				tardisAlpha -= 0.12;
-				enemyList.splice(index, 1);
-			
+				enemyList.splice(index, 1);			
 			}
 		}
 	);

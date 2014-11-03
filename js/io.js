@@ -3,9 +3,12 @@ function setCanvas (){
 	ctx = canvas.getContext("2d");
 	canvas.width = CANVAS_WIDTH;
 	canvas.height = CANVAS_HEIGHT;
+
 	canvas.addEventListener("mousedown", canvasClick, false);
 	canvas.addEventListener('mousemove', mouseMonitor);
 	document.body.appendChild(canvas);
+	canvas.setAttribute("id", "canvas");
+
 };
 
 

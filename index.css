@@ -30,4 +30,53 @@ html {
 #yellow{color: #F8F097;}
 #green { color: #8DD67F;}
 #blue {	color: #71B3C3;}
-#orange { color: #FFCB5E;}
+#orange { color: #A1A1A1;}
+
+#introDiv {
+	display: block;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#intro {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+#play {
+	display: block;
+	position: relative;
+	float: right;
+	top: -70px;
+	padding-right: 45px;
+}
+
+#powerUps {
+	margin-top: 5px;
+	width: 60px;
+	float: right;
+}
+
+#powerUps img{
+	padding-bottom: 10px;
+}
+
+#fez {
+	display: block;
+	float: right;
+	width: 100%;
+}
+
+#g3d {
+	display: block;
+	float: right;
+	width: 100%;
+}
+
+
+#bowTie {
+	display: block;
+	float: right;
+	width: 100%;
+}
+

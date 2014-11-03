@@ -14,6 +14,12 @@
 			<p id="blue"></p>
 			<p id="orange"></p>
 		</div>
+
+		<div id="powerUps">
+			<img id="fez" src="images/fez.png">
+			<img id="g3d" src="images/3d.png">
+			<img id="bowTie" src="images/bow_tie.png">
+		</div>		
 		
 		<script src="js/io.js"></script>
 		<script src="js/Tower.js"></script>
@@ -24,6 +30,35 @@
 		<script src="js/Enemy.js"></script>
 		<script src="js/game.js"></script>
 		<script src="js/init.js"></script>
+		<div id="introDiv">
+				<img id="intro" src="images/intro2.png">
+				<img id="play" src="images/play.png">
+		</div>
+		<script type="text/javascript">
+		window.onload = function() {
+			// Handle intro image
+			document.getElementById("canvas").style.display = "none";
+			document.getElementById("name").style.display = "none";
+			document.getElementById("priceBlock").style.display = "none";
+			document.getElementById("fez").style.display = "none";
+			document.getElementById("g3d").style.display = "none";
+			document.getElementById("bowTie").style.display = "none";
+			document.getElementById('play').onclick = function() {
+				// Remove intro images
+				var elem = document.getElementById('play');
+				elem.parentNode.removeChild(elem);
+				var elem = document.getElementById('intro');
+ 				elem.parentNode.removeChild(elem);
+
+ 				document.getElementById("canvas").style.display = "block";
+				document.getElementById("name").style.display = "block";
+				document.getElementById("priceBlock").style.display = "block";
+				document.getElementById("fez").style.display = "block";
+				document.getElementById("g3d").style.display = "block";
+				document.getElementById("bowTie").style.display = "block";
+			};
+		};
+		</script>
 
 
 	</body>

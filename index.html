@@ -14,11 +14,21 @@
 			<p id="blue"></p>
 			<p id="orange"></p>
 		</div>
-
 		<div id="powerUps">
-			<img id="fez" src="images/fez.png">
-			<img id="g3d" src="images/3d.png">
-			<img id="bowTie" src="images/bow_tie.png">
+			<h2 id="powerUpsTitle">PowerUps</h2>
+			<div class="powerUpPair" id="fezBlock">
+				<p> $400<br>+ROF</p>
+				<img id="fez" src="images/fez.png">
+			</div>
+			<div class="powerUpPair" id="g3dBlock">
+				<p> $500<br>+range</p>
+				<img id="g3d" src="images/3d.png">
+			</div>
+			<div class="powerUpPair" id="bowTieBlock">
+				<p> $600<br>+impact</p>
+				<img id="bowTie" src="images/bow_tie.png">
+			</div>
+	
 		</div>		
 		
 		<script src="js/io.js"></script>
@@ -40,9 +50,8 @@
 			document.getElementById("canvas").style.display = "none";
 			document.getElementById("name").style.display = "none";
 			document.getElementById("priceBlock").style.display = "none";
-			document.getElementById("fez").style.display = "none";
-			document.getElementById("g3d").style.display = "none";
-			document.getElementById("bowTie").style.display = "none";
+			document.getElementById("powerUps").style.display = "none";
+
 			document.getElementById('play').onclick = function() {
 				// Remove intro images
 				var elem = document.getElementById('play');
@@ -53,9 +62,7 @@
  				document.getElementById("canvas").style.display = "block";
 				document.getElementById("name").style.display = "block";
 				document.getElementById("priceBlock").style.display = "block";
-				document.getElementById("fez").style.display = "block";
-				document.getElementById("g3d").style.display = "block";
-				document.getElementById("bowTie").style.display = "block";
+				document.getElementById("powerUps").style.display = "block";
 			};
 		};
 		</script>

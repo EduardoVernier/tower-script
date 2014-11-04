@@ -19,6 +19,8 @@ var timeStart;
 var score;
 var releaseTheDaleks;
 
+var powerUps = {fez: false, goggles: false, bowTie:false};
+
 
 // Crockford's suggestion on implementing inheritance
 if (typeof Object.create !== 'function'){

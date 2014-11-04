@@ -56,6 +56,8 @@ document.getElementById('fez').addEventListener('click', function (e) {
 		totalMoney-=400;
 		var elem = document.getElementById('fezBlock');
 		elem.parentNode.removeChild(elem);
+		powerUps.fez = true;
+		updateK9Images();
 	}
 });
 
@@ -68,6 +70,8 @@ document.getElementById('g3d').addEventListener('click', function (e) {
 		totalMoney-=400;
 		var elem = document.getElementById('g3dBlock');
 		elem.parentNode.removeChild(elem);
+		powerUps.goggles = true;
+		updateK9Images();
 	}
 });
 
@@ -80,5 +84,13 @@ document.getElementById('bowTie').addEventListener('click', function (e) {
 		totalMoney-=400;
 		var elem = document.getElementById('bowTieBlock');
 		elem.parentNode.removeChild(elem);
+		powerUps.bowTie = true;
+		updateK9Images();
 	}
 });
+
+
+function updateK9Images(){
+	// TODO - waiting for kris
+	var a='hi';
+};

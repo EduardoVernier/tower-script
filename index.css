@@ -89,3 +89,10 @@ body {
 	float: right;
 	color: rgb(126, 171, 173);
 }
+
+#pauseButton {
+	position: absolute;
+	top: 90%;
+	width: 3%;
+	right: 2%;
+}

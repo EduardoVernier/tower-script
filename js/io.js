@@ -90,3 +90,10 @@ function updateK9Images(){
 	// TODO - waiting for kris
 	var a='hi';
 };
+
+document.getElementById('pauseButton').addEventListener('click', function (e) {
+	if (pause === false)
+		pause = true;
+	else if (pause === true)
+		pause = false;
+});

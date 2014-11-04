@@ -21,6 +21,7 @@ var releaseTheDaleks;
 
 var powerUps = {fez: false, goggles: false, bowTie:false};
 
+var pause = false;
 
 // Crockford's suggestion on implementing inheritance
 if (typeof Object.create !== 'function'){
@@ -92,9 +93,11 @@ var main = function () {
 	var now = Date.now();
 	var delta = now - then;
 
-	render();
-	update(delta / 1000);
-
+	if (!pause){
+		render();
+		update(delta / 1000);
+	}
+	
 	then = now;
 
 	// Request to do this again ASAP

@@ -45,7 +45,7 @@ function float2int (value) {
 };
 
 document.getElementById('fez').addEventListener('click', function (e) {
-	if (totalMoney > 400){
+	if (totalMoney > 600){
 		YellowTower.cooldown = YellowTower.cooldown*0.80; 
 		GreenTower.cooldown = GreenTower.cooldown*0.80; 
 		BlueTower.cooldown = BlueTower.cooldown*0.80; 
@@ -59,8 +59,8 @@ document.getElementById('fez').addEventListener('click', function (e) {
 });
 
 document.getElementById('g3d').addEventListener('click', function (e) {
-	if (totalMoney > 500){
-		YellowTower.radius = YellowTower.radius*13; 
+	if (totalMoney > 800){
+		YellowTower.radius = YellowTower.radius*1.3; 
 		GreenTower.radius = GreenTower.radius*1.3; 
 		BlueTower.radius = BlueTower.radius*1.3; 
 		OrangeTower.radius = OrangeTower.radius*1.3; 
@@ -73,7 +73,7 @@ document.getElementById('g3d').addEventListener('click', function (e) {
 });
 
 document.getElementById('bowTie').addEventListener('click', function (e) {
-	if (totalMoney > 600){
+	if (totalMoney > 1000){
 		YellowTower.impact = YellowTower.impact*1.3; 
 		GreenTower.impact = GreenTower.impact*1.3; 
 		BlueTower.impact = BlueTower.impact*1.3; 
@@ -87,8 +87,197 @@ document.getElementById('bowTie').addEventListener('click', function (e) {
 });
 
 function updateK9Images(){
-	// TODO - waiting for kris
-	var a='hi';
+	// Loads k-9s with powerups
+	if (powerUps.fez == true 
+		&& powerUps.goggles == true 
+		&& powerUps.bowTie == true){
+		
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_golden_super.png";
+		YellowTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_verde_super.png";
+		GreenTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_blue_super.png";
+		BlueTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_silver_super.png";
+		OrangeTower.image = towerImage;
+
+	} else if (powerUps.fez == true 
+		&& powerUps.goggles == true){
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_golden_Fez_3d.png";
+		YellowTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_verde_Fez_3d.png";
+		GreenTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_blue_Fez_3d.png";
+		BlueTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_silver_Fez_3d.png";
+		OrangeTower.image = towerImage;
+
+	} else if (powerUps.fez == true 
+		&& powerUps.bowTie == true){
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_golden_BowTie_Fez.png";
+		YellowTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_verde_BowTie_Fez.png";
+		GreenTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_blue_BowTie_Fez.png";
+		BlueTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_silver_BowTie_Fez.png";
+		OrangeTower.image = towerImage;
+
+	} else if (powerUps.goggles == true 
+		&& powerUps.bowTie == true){
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_golden_3d_BowTie.png";
+		YellowTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_verde_3d_BowTie.png";
+		GreenTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_blue_3d_BowTie.png";
+		BlueTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_silver_3d_BowTie.png";
+		OrangeTower.image = towerImage;
+
+
+	} else if (powerUps.fez == true){
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_golden_Fez.png";
+		YellowTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_verde_Fez.png";
+		GreenTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_blue_Fez.png";
+		BlueTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_silver_Fez.png";
+		OrangeTower.image = towerImage;
+
+	} else if (powerUps.goggles == true){
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_golden_3d.png";
+		YellowTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_verde_3d.png";
+		GreenTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_blue_3d.png";
+		BlueTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_silver_3d.png";
+		OrangeTower.image = towerImage;
+
+	} else if (powerUps.bowTie == true){
+				var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_golden_BowTie.png";
+		YellowTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_verde_BowTie.png";
+		GreenTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_blue_BowTie.png";
+		BlueTower.image = towerImage;
+
+		var towerReady = false;
+		var towerImage = new Image();
+		towerImage.onload = function () { towerReady = true;};
+		towerImage.src = "images/k9/k9_silver_BowTie.png";
+		OrangeTower.image = towerImage;
+
+	}
+
+
+
+
 };
 
 document.getElementById('pauseButton').addEventListener('click', function (e) {

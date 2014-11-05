@@ -96,3 +96,10 @@ body {
 	width: 3%;
 	right: 2%;
 }
+
+#credits {
+	color: white;
+	position: absolute;
+	top: 89%;
+	left: 2%;
+}

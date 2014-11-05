@@ -13,7 +13,7 @@ var initFirstGreenTower = function(){
 	var greenTowerReady = false;
 	var greenTowerImage = new Image();
 	greenTowerImage.onload = function () { greenTowerReady = true;};
-	greenTowerImage.src = "images/k9_verde.png";
+	greenTowerImage.src = "images/k9/k9_verde.png";
 	newTower.image = greenTowerImage;
 
 	return newTower;

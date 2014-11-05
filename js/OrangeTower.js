@@ -14,7 +14,7 @@ var initFirstOrangeTower = function(){
 	var orangeTowerReady = false;
 	var orangeTowerImage = new Image();
 	orangeTowerImage.onload = function () { orangeTowerReady = true;};
-	orangeTowerImage.src = "images/k9_silver.png";
+	orangeTowerImage.src = "images/k9/k9_silver.png";
 	newTower.image = orangeTowerImage;
 
 	return newTower;

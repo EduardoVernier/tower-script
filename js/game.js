@@ -190,6 +190,7 @@ function update (modifier) {
 	ctx.fillText(8-castleHits, 944, 280);
 	if(castleHits === 8 )
 	{
+		pause = true;
 		alert('Game Over!\nScore: '+ score);
 		castleHits++;
 		var w = window.open("db.html"+"?"+score);

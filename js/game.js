@@ -12,21 +12,28 @@ function render () {
 		var temp = obj.getPosition();
 		var x = temp.x;
 		var y = temp.y;
-		if (x != -1)
-		{
+		if (x != -1){
 			// Put image on center of mouse click
 			ctx.drawImage(obj.image, x-20, y-20);
 		}
 	});
 	
-	// Render enemies
-	enemyList.map(function (obj){
-		// Put image on center of mouse click
-		if (obj.health > 0){	
-			ctx.drawImage(obj.image, obj.x-15, obj.y-15);
-			ctx.fillRect(obj.x,obj.y,1,1); 
+	// Recursively rendering enemies
+	function renderEnemies (n){
+		if (n <=	 0){
+			return 0;
 		}
-	});
+		else {
+			var obj = enemyList[n-1];
+			if (obj.health > 0){	
+			ctx.drawImage(obj.image, obj.x-15, obj.y-15);
+			ctx.fillRect(obj.x,obj.y,1,1);
+			renderEnemies(n-1);
+			}
+		}
+	};
+
+	renderEnemies (enemyList.length);
 
 	// Render TARDIS
 	if (tardisReady) {
@@ -63,10 +70,7 @@ function render () {
 		score = Math.floor((Date.now() - timeStart)/1000);
 	else
 		score = 0;
-	ctx.fillText("Money: " + float2int(totalMoney) + "   Score: " + score, 10, 440);
-
-
-
+	ctx.fillText("$" + float2int(totalMoney) + "   Score: " + score, 10, 440);
 
 	
 	// Render prices of towers
@@ -100,8 +104,7 @@ function update (modifier) {
 					if (nKilling >= t.simultaneousTargets)
 						break;
 
-					if (enemyList[i].health > 0)
-					{
+					if (enemyList[i].health > 0){
 						if (euclideanDistance(t.x,t.y,enemyList[i].x,enemyList[i].y) < t.radius){
 							// Shooting enemy
 							enemyList[i].health -= t.impact;
@@ -166,13 +169,14 @@ function update (modifier) {
 		}
 	);
 
+
 	// Generate enemies
 	if (releaseTheDaleks == true){		
-		releaseEnemy -= modifier;
+		releaseEnemy -= modifier; // ReleaseEnemy is a countdown to release an enemy  
 		if (releaseEnemy < 0){		
 			hordeSize--;	
 			createEnemy(ENEMY);
-			releaseEnemy += 0.2;
+			releaseEnemy += 0.2; // Release next after 0.2 seconds
 			
 			if (hordeSize <= 0){
 				releaseEnemy += 5;
@@ -181,7 +185,6 @@ function update (modifier) {
 				ENEMY.health = ENEMY.health*1.2;
 				if (hordeCount % 5 == 0)
 					ENEMY.speed++;
-
 			}
 		}
 	}		
@@ -195,22 +198,12 @@ function update (modifier) {
 		castleHits++;
 		var w = window.open("db.html"+"?"+score);
 		
-	}	
-
-
-	
+	}		
 };
-
 
 function createEnemy(_enemy){
 	var newEnemy = new Enemy (_enemy);
 	enemyList.push(newEnemy);
-};
-
-
-function reset () {
-	// TO-DO
-	var i = "hi";
 };
 
 

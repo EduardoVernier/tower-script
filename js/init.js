@@ -46,12 +46,10 @@ var ENEMY = {
 	bounty: 100
 }
 
-
 var canvas;
 var ctx;
 
 setCanvas();
-
 
 // Handle keyboard controls
 var keysDown = {};
@@ -113,6 +111,5 @@ window.onfocus = function() { pause = false; }
 var then = Date.now();
 var timeStart = 0;
 releaseTheDaleks = false;
-reset();
 main();
 

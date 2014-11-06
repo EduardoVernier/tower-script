@@ -86,8 +86,6 @@ tardisImage.onload = function () { tardisReady = true;};
 tardisImage.src = "images/tardis.png";
 tardis = tardisImage;
 
-
-
 // The main game loop
 var main = function () {
 	var now = Date.now();
@@ -107,6 +105,9 @@ var main = function () {
 // Cross-browser support for requestAnimationFrame
 var w = window;
 requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
+// Fixes tab focus bug
+window.onblur = function() { pause = true; }
+window.onfocus = function() { pause = false; }
 
 // Let's play this game!
 var then = Date.now();

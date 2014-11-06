@@ -45,12 +45,12 @@ function float2int (value) {
 };
 
 document.getElementById('fez').addEventListener('click', function (e) {
-	if (totalMoney > 600){
-		YellowTower.cooldown = YellowTower.cooldown*0.80; 
-		GreenTower.cooldown = GreenTower.cooldown*0.80; 
-		BlueTower.cooldown = BlueTower.cooldown*0.80; 
-		OrangeTower.cooldown = OrangeTower.cooldown*0.80; 
-		totalMoney-=400;
+	if (totalMoney > 300){
+		YellowTower.cooldown = YellowTower.cooldown*0.85; 
+		GreenTower.cooldown = GreenTower.cooldown*0.85; 
+		BlueTower.cooldown = BlueTower.cooldown*0.85; 
+		OrangeTower.cooldown = OrangeTower.cooldown*0.85; 
+		totalMoney-=300;
 		var elem = document.getElementById('fezBlock');
 		elem.parentNode.removeChild(elem);
 		powerUps.fez = true;
@@ -59,7 +59,7 @@ document.getElementById('fez').addEventListener('click', function (e) {
 });
 
 document.getElementById('g3d').addEventListener('click', function (e) {
-	if (totalMoney > 800){
+	if (totalMoney > 400){
 		YellowTower.radius = YellowTower.radius*1.3; 
 		GreenTower.radius = GreenTower.radius*1.3; 
 		BlueTower.radius = BlueTower.radius*1.3; 
@@ -73,12 +73,12 @@ document.getElementById('g3d').addEventListener('click', function (e) {
 });
 
 document.getElementById('bowTie').addEventListener('click', function (e) {
-	if (totalMoney > 1000){
+	if (totalMoney > 500){
 		YellowTower.impact = YellowTower.impact*1.3; 
 		GreenTower.impact = GreenTower.impact*1.3; 
 		BlueTower.impact = BlueTower.impact*1.3; 
 		OrangeTower.impact = OrangeTower.impact*1.3; 
-		totalMoney-=400;
+		totalMoney-=500;
 		var elem = document.getElementById('bowTieBlock');
 		elem.parentNode.removeChild(elem);
 		powerUps.bowTie = true;

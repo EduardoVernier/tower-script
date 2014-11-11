@@ -83,21 +83,23 @@ function render () {
   	var s= document.getElementById("orange");
   	s.innerHTML = '$'+OrangeTower.price;
 
-  	 // Update color of powerup
-	if(totalMoney > 300)
-	    document.getElementById('fezText').style.color = "#4EFF42";
-	else
-	    document.getElementById('fezText').style.color = "#AAAAAA";
-
-	if(totalMoney > 400)
-	    document.getElementById('g3dText').style.color = "#4EFF42";
-	else
-	    document.getElementById('g3dText').style.color = "#AAAAAA";
-
-	if(totalMoney > 500)
-	    document.getElementById('bowTieText').style.color = "#4EFF42";
-	else
-	    document.getElementById('bowTieText').style.color = "#AAAAAA";
+	// Update color of powerup
+	if (!powerUps.fez)
+		if(totalMoney > 300)
+			document.getElementById('fezText').style.color = "#4EFF42";
+		else
+			document.getElementById('fezText').style.color = "#AAAAAA";
+	
+	if (!powerUps.goggles)
+		if(totalMoney > 400)
+			document.getElementById('g3dText').style.color = "#4EFF42";
+		else
+			document.getElementById('g3dText').style.color = "#AAAAAA";
+	if (!powerUps.bowTie)
+		if(totalMoney > 500)
+			document.getElementById('bowTieText').style.color = "#4EFF42";
+		else
+			document.getElementById('bowTieText').style.color = "#AAAAAA";
 
 
 };

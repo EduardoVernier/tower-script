@@ -173,6 +173,12 @@ function update (modifier) {
 		createBlueTower();
 	else if (82 in keysDown)
 		createOrangeTower();
+	else if (27 in keysDown){
+		cursorStyle = 0;
+		if (towerList[towerList.length-1].x == -1)
+			// Remove last element if esc pressed
+			towerList.splice(towerList.length-1,1); 
+	}
 
 	// Tower hit
 	enemyList.map(function (obj,index){

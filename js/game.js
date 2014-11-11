@@ -173,8 +173,6 @@ function update (modifier) {
 		createBlueTower();
 	else if (82 in keysDown)
 		createOrangeTower();
-	else if (32 in keysDown)
-		createEnemy(ENEMY);
 
 	// Tower hit
 	enemyList.map(function (obj,index){
@@ -212,8 +210,8 @@ function update (modifier) {
 	ctx.fillText(8-castleHits, 944, 280);
 	if(castleHits === 8 )
 	{
-		pause = true;
 		alert('Game Over!\nScore: '+ score);
+		pause = true;
 		castleHits++;
 		var w = window.open("db.html"+"?"+score);
 		

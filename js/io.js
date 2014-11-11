@@ -282,7 +282,13 @@ function updateK9Images(){
 
 document.getElementById('pauseButton').addEventListener('click', function (e) {
 	if (pause === false)
+	{
 		pause = true;
-	else if (pause === true)
+		document.getElementById('pauseButton').src = "images/play_button.png"
+	}
+
+	else if (pause === true){
+		document.getElementById('pauseButton').src = "images/pause_button.png"
 		pause = false;
+	}
 });

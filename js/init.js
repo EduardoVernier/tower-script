@@ -32,6 +32,32 @@ if (typeof Object.create !== 'function'){
 	};
 }
 
+// Currying auxiliary function 
+function curry(func,args,space) {
+    var n  = func.length - args.length; //arguments still to come
+    var sa = Array.prototype.slice.apply(args); // saved accumulator array
+    function accumulator(moreArgs,sa,n) {
+        var saPrev = sa.slice(0); 
+        var nPrev  = n; 
+        for(var i=0;i<moreArgs.length;i++,n--) {
+            sa[sa.length] = moreArgs[i];
+        }
+        if ((n-moreArgs.length)<=0) {
+            var res = func.apply(space,sa);
+            // Reset vars, so curried function can be applied to new params.
+            sa = saPrev;
+            n  = nPrev;
+            return res;
+        } else {
+            return function (){
+                // Arguments are params, so closure bussiness is avoided.
+                return accumulator(arguments,sa.slice(0),n);
+            }
+        }
+    }
+    return accumulator([],sa,n);
+};
+
 Tower = initFirstTower();
 YellowTower = initFirstYellowTower();
 GreenTower = initFirstGreenTower();
@@ -104,8 +130,8 @@ var main = function () {
 var w = window;
 requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
 // Fixes tab focus bug
-window.onblur = function() { pause = true; }
-window.onfocus = function() { pause = false; }
+window.onblur = function() { pause = true; releaseTheDaleks = false; }
+window.onfocus = function() { pause = false; releaseTheDaleks = true;}
 
 // Let's play this game!
 var then = Date.now();

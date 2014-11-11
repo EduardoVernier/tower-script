@@ -20,15 +20,15 @@ function render () {
 	
 	// Recursively rendering enemies
 	function renderEnemies (n){
-		if (n <=	 0){
+		if (n <= 0){ 
 			return 0;
 		}
 		else {
 			var obj = enemyList[n-1];
 			if (obj.health > 0){	
-			ctx.drawImage(obj.image, obj.x-15, obj.y-15);
-			ctx.fillRect(obj.x,obj.y,1,1);
-			renderEnemies(n-1);
+				ctx.drawImage(obj.image, obj.x-15, obj.y-15);
+				ctx.fillRect(obj.x,obj.y,1,1);
+				renderEnemies(n-1);
 			}
 		}
 	};
@@ -82,6 +82,23 @@ function render () {
   	s.innerHTML = '$'+BlueTower.price;
   	var s= document.getElementById("orange");
   	s.innerHTML = '$'+OrangeTower.price;
+
+  	 // Update color of powerup
+	if(totalMoney > 300)
+	    document.getElementById('fezText').style.color = "#4EFF42";
+	else
+	    document.getElementById('fezText').style.color = "#AAAAAA";
+
+	if(totalMoney > 400)
+	    document.getElementById('g3dText').style.color = "#4EFF42";
+	else
+	    document.getElementById('g3dText').style.color = "#AAAAAA";
+
+	if(totalMoney > 500)
+	    document.getElementById('bowTieText').style.color = "#4EFF42";
+	else
+	    document.getElementById('bowTieText').style.color = "#AAAAAA";
+
 
 };
 
@@ -206,5 +223,12 @@ function createEnemy(_enemy){
 	enemyList.push(newEnemy);
 };
 
+// Curried add function
+function add (a,b,c){
+      if (arguments.length < this.add.length) {
+        return curry(this.add,arguments,this);
+      }
+      return a+b+c;
+};
 
 

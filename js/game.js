@@ -84,18 +84,18 @@ function render () {
   	s.innerHTML = '$'+OrangeTower.price;
 
 	// Update color of powerup
-	if (!powerUps.fez)
+	if (!Manager.PowerUps.getFez())
 		if(totalMoney > 300)
 			document.getElementById('fezText').style.color = "#4EFF42";
 		else
 			document.getElementById('fezText').style.color = "#AAAAAA";
 	
-	if (!powerUps.goggles)
+	if (!Manager.PowerUps.getGoggles())
 		if(totalMoney > 400)
 			document.getElementById('g3dText').style.color = "#4EFF42";
 		else
 			document.getElementById('g3dText').style.color = "#AAAAAA";
-	if (!powerUps.bowTie)
+	if (!Manager.PowerUps.getBowTie())
 		if(totalMoney > 500)
 			document.getElementById('bowTieText').style.color = "#4EFF42";
 		else

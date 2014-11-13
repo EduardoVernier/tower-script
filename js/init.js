@@ -18,10 +18,10 @@ var tardisAlpha = 1;
 var timeStart;
 var score;
 var releaseTheDaleks;
-
-var powerUps = {fez: false, goggles: false, bowTie:false};
-
 var pause = false;
+
+
+Manager.PowerUps.initialize(); // using namespaces
 
 // Crockford's suggestion on implementing inheritance
 if (typeof Object.create !== 'function'){
@@ -129,9 +129,6 @@ var main = function () {
 // Cross-browser support for requestAnimationFrame
 var w = window;
 requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
-// Fixes tab focus bug
-window.onblur = function() { pause = true; releaseTheDaleks = false; }
-window.onfocus = function() { pause = false; releaseTheDaleks = true;}
 
 // Let's play this game!
 var then = Date.now();

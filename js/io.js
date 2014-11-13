@@ -45,52 +45,22 @@ function float2int (value) {
 };
 
 document.getElementById('fez').addEventListener('click', function (e) {
-	if (totalMoney > 300){
-		YellowTower.cooldown = YellowTower.cooldown*0.85; 
-		GreenTower.cooldown = GreenTower.cooldown*0.85; 
-		BlueTower.cooldown = BlueTower.cooldown*0.85; 
-		OrangeTower.cooldown = OrangeTower.cooldown*0.85; 
-		totalMoney-=300;
-		var elem = document.getElementById('fezBlock');
-		elem.parentNode.removeChild(elem);
-		powerUps.fez = true;
-		updateK9Images();
-	}
+	Manager.PowerUps.buyFez();
 });
 
 document.getElementById('g3d').addEventListener('click', function (e) {
-	if (totalMoney > 400){
-		YellowTower.radius = YellowTower.radius*1.3; 
-		GreenTower.radius = GreenTower.radius*1.3; 
-		BlueTower.radius = BlueTower.radius*1.3; 
-		OrangeTower.radius = OrangeTower.radius*1.3; 
-		totalMoney-=400;
-		var elem = document.getElementById('g3dBlock');
-		elem.parentNode.removeChild(elem);
-		powerUps.goggles = true;
-		updateK9Images();
-	}
+	Manager.PowerUps.buyGoggles();
 });
 
 document.getElementById('bowTie').addEventListener('click', function (e) {
-	if (totalMoney > 500){
-		YellowTower.impact = YellowTower.impact*1.3; 
-		GreenTower.impact = GreenTower.impact*1.3; 
-		BlueTower.impact = BlueTower.impact*1.3; 
-		OrangeTower.impact = OrangeTower.impact*1.3; 
-		totalMoney-=500;
-		var elem = document.getElementById('bowTieBlock');
-		elem.parentNode.removeChild(elem);
-		powerUps.bowTie = true;
-		updateK9Images();
-	}
+	Manager.PowerUps.buyBowTie();
 });
 
 function updateK9Images(){
 	// Loads k-9s with powerups
-	if (powerUps.fez == true 
-		&& powerUps.goggles == true 
-		&& powerUps.bowTie == true){
+	if (Manager.PowerUps.getFez() == true 
+		&& Manager.PowerUps.getGoggles() == true 
+		&& Manager.PowerUps.getBowTie() == true){
 		
 		var towerReady = false;
 		var towerImage = new Image();
@@ -116,8 +86,8 @@ function updateK9Images(){
 		towerImage.src = "images/k9/k9_silver_super.png";
 		OrangeTower.image = towerImage;
 
-	} else if (powerUps.fez == true 
-		&& powerUps.goggles == true){
+	} else if (Manager.PowerUps.getFez() == true 
+		&& Manager.PowerUps.getGoggles() == true){
 
 		var towerReady = false;
 		var towerImage = new Image();
@@ -143,8 +113,8 @@ function updateK9Images(){
 		towerImage.src = "images/k9/k9_silver_Fez_3d.png";
 		OrangeTower.image = towerImage;
 
-	} else if (powerUps.fez == true 
-		&& powerUps.bowTie == true){
+	} else if (Manager.PowerUps.getFez() == true 
+		&& Manager.PowerUps.getBowTie() == true){
 
 		var towerReady = false;
 		var towerImage = new Image();
@@ -170,8 +140,8 @@ function updateK9Images(){
 		towerImage.src = "images/k9/k9_silver_BowTie_Fez.png";
 		OrangeTower.image = towerImage;
 
-	} else if (powerUps.goggles == true 
-		&& powerUps.bowTie == true){
+	} else if (Manager.PowerUps.getGoggles() == true 
+		&& Manager.PowerUps.getBowTie() == true){
 
 		var towerReady = false;
 		var towerImage = new Image();
@@ -198,7 +168,7 @@ function updateK9Images(){
 		OrangeTower.image = towerImage;
 
 
-	} else if (powerUps.fez == true){
+	} else if (Manager.PowerUps.getFez() == true){
 		var towerReady = false;
 		var towerImage = new Image();
 		towerImage.onload = function () { towerReady = true;};
@@ -223,7 +193,7 @@ function updateK9Images(){
 		towerImage.src = "images/k9/k9_silver_Fez.png";
 		OrangeTower.image = towerImage;
 
-	} else if (powerUps.goggles == true){
+	} else if (Manager.PowerUps.getGoggles() == true){
 		var towerReady = false;
 		var towerImage = new Image();
 		towerImage.onload = function () { towerReady = true;};
@@ -248,8 +218,8 @@ function updateK9Images(){
 		towerImage.src = "images/k9/k9_silver_3d.png";
 		OrangeTower.image = towerImage;
 
-	} else if (powerUps.bowTie == true){
-				var towerReady = false;
+	} else if (Manager.PowerUps.getBowTie() == true){
+		var towerReady = false;
 		var towerImage = new Image();
 		towerImage.onload = function () { towerReady = true;};
 		towerImage.src = "images/k9/k9_golden_BowTie.png";

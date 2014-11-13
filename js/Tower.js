@@ -24,9 +24,8 @@ var initFirstTower = function(){
 			function euclideanDistance (x1,y1,x2,y2){
 				return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
 			};
-
+			
 			var insideNeighborFlag = false;
-
 			towerList.forEach(function (obj){
 				var temp = obj.getPosition();
 
@@ -42,7 +41,10 @@ var initFirstTower = function(){
 				totalMoney -= towerList[len-1].price
 				var newPrice = towerList[len-1].parentObject.price * 1.20; // Price increase
  				towerList[len-1].parentObject.price = parseFloat(Math.round(newPrice * 100) / 100).toFixed(2);
-
+				// Enemies start to spawn after first tower is placed 
+				releaseTheDaleks = true;
+ 				if (releaseTheDaleks && timeStart === 0)
+	 				timeStart = Date.now();
 				// this.x = _x; bug wtf 
 				// this.y = _y; perdi 3 horas nisso
 			}

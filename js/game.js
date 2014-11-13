@@ -75,33 +75,15 @@ function render () {
 	
 	// Render prices of towers
 	var s= document.getElementById("yellow");
-  	s.innerHTML = '$'+YellowTower.price;
-	var s= document.getElementById("green");
-  	s.innerHTML = '$'+GreenTower.price;
-  	var s= document.getElementById("blue");
-  	s.innerHTML = '$'+BlueTower.price;
-  	var s= document.getElementById("orange");
-  	s.innerHTML = '$'+OrangeTower.price;
-
-	// Update color of powerup
-	if (!Manager.PowerUps.getFez())
-		if(totalMoney > 300)
-			document.getElementById('fezText').style.color = "#4EFF42";
-		else
-			document.getElementById('fezText').style.color = "#AAAAAA";
+   	s.innerHTML = '$'+float2int(YellowTower.price);
+  	var s= document.getElementById("green");
+   	s.innerHTML = '$'+float2int(GreenTower.price);
+   	var s= document.getElementById("blue");
+   	s.innerHTML = '$'+float2int(BlueTower.price);
+    var s= document.getElementById("orange");
+  	s.innerHTML = '$'+float2int(OrangeTower.price);
 	
-	if (!Manager.PowerUps.getGoggles())
-		if(totalMoney > 400)
-			document.getElementById('g3dText').style.color = "#4EFF42";
-		else
-			document.getElementById('g3dText').style.color = "#AAAAAA";
-	if (!Manager.PowerUps.getBowTie())
-		if(totalMoney > 500)
-			document.getElementById('bowTieText').style.color = "#4EFF42";
-		else
-			document.getElementById('bowTieText').style.color = "#AAAAAA";
-
-
+	Manager.PowerUps.renderPowerUps();
 };
 
 function update (modifier) {
@@ -205,7 +187,7 @@ function update (modifier) {
 				releaseEnemy += 5;
 				hordeCount++;
 				hordeSize = hordeCount*hordeCount;
-				ENEMY.health = ENEMY.health*1.2;
+				ENEMY.health = ENEMY.health*(1.2+hordeCount/1000);
 				if (hordeCount % 5 == 0)
 					ENEMY.speed++;
 			}
@@ -229,12 +211,6 @@ function createEnemy(_enemy){
 	enemyList.push(newEnemy);
 };
 
-// Curried add function
-function add (a,b,c){
-      if (arguments.length < this.add.length) {
-        return curry(this.add,arguments,this);
-      }
-      return a+b+c;
-};
+
 
 

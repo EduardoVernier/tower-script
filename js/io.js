@@ -27,11 +27,6 @@ function canvasClick(event) // Place tower! Very important
 	 && totalMoney - towerList[len-1].price >=0) {
 		towerList [len-1].setPosition (cX-9, cY-9);
 		cursorStyle = 0;
- 		// Enemies start to spawn after first tower is placed 
-		releaseTheDaleks = true;
- 		if (releaseTheDaleks && timeStart === 0)
-	 		timeStart = Date.now();
-
 	}
 };
 
